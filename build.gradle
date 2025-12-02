@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.popjub'
-version = '1.0.1'
+version = '1.0.2'
 description = 'common'
 
 java {
@@ -46,7 +46,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.popjub.common'
             artifactId = 'common'
-            version = '1.0.1'
+            version = '1.0.2'
 
             from components.java
         }
@@ -62,6 +62,6 @@ tasks.named('jar') {
     enabled = true
 }
 
-//tasks.named('test') {
-//    useJUnitPlatform()
-//}
+tasks.named('test') {
+    useJUnitPlatform()
+}
