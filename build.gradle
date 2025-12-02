@@ -23,18 +23,36 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven { url "https://jitpack.io" }
+    maven { url = "https://jitpack.io" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.8'
     implementation 'org.springframework.boot:spring-boot-starter-web:3.5.8'
     compileOnly 'org.projectlombok:lombok:1.18.30'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.8'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.popjub.common'
+            artifactId = 'common'
+            version = '1.0.1'
+
+            from components.java
+        }
+    }
+}
+
 
 tasks.named('bootJar') {
     enabled = false
@@ -44,6 +62,6 @@ tasks.named('jar') {
     enabled = true
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
+//tasks.named('test') {
+//    useJUnitPlatform()
+//}
