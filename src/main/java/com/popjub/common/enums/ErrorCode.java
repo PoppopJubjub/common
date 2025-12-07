@@ -9,7 +9,11 @@ public enum ErrorCode  implements BaseErrorCode {
     // -- 공통 --
     INVALID_INPUT_VALUE("입력값이 올바르지 않습니다.", HttpStatus.BAD_REQUEST),
     METHOD_NOT_ALLOWED("허용되지 않은 HTTP 메서드입니다.", HttpStatus.METHOD_NOT_ALLOWED),
-    INTERNAL_SERVER_ERROR("서버 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR)
+    INTERNAL_SERVER_ERROR("서버 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
+
+    // UserContext 관련
+    USER_CONTEXT_NOT_FOUND("사용자 인증 정보를 찾을 수 없습니다.", HttpStatus.UNAUTHORIZED),
+    INVALID_USER_HEADER("잘못된 사용자 헤더 정보입니다.", HttpStatus.BAD_REQUEST)
 ;
 
 
