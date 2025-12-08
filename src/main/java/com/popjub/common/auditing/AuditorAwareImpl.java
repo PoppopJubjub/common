@@ -11,13 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * JPA Auditing 을 위한 AuditorAware 구현
- * BaseEntity 의 createdBy, updatedBy에 자동으로 userName 주입
+ * BaseEntity 의 createdBy, updatedBy에 자동으로 userId 주입
  */
 @Slf4j
 @Component
-public class AuditorAwareImpl implements AuditorAware<String> {
+public class AuditorAwareImpl implements AuditorAware<Long> {
 	@Override
-	public Optional<String> getCurrentAuditor() {
+	public Optional<Long> getCurrentAuditor() {
 		try {
 			UserContext userContext = UserContext.get();
 
@@ -26,7 +26,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 				return Optional.empty();
 			}
 
-			return Optional.of(userContext.getUserName());
+			return Optional.of(userContext.getUserId());
 		} catch (Exception e) {
 			log.error("AuditorAwareImpl - 작업자 정보 조회 실패: {}", e.getMessage());
 			return Optional.empty();
