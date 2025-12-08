@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserContextFilter extends OncePerRequestFilter {
 
 	private static final String USER_ID_HEADER = "X-USER-ID";
-	private static final String EMAIL_HEADER = "X-USER-EMAIL";
+	private static final String USER_NAME_HEADER = "X-USER-NAME";
 
 	@Override
 	protected void doFilterInternal(
@@ -32,21 +32,21 @@ public class UserContextFilter extends OncePerRequestFilter {
 
 		try {
 			String userIdHeader = request.getHeader(USER_ID_HEADER);
-			String emailHeader = request.getHeader(EMAIL_HEADER);
+			String userNameHeader = request.getHeader(USER_NAME_HEADER);
 
 			if (userIdHeader != null) {
 				Long userId = Long.parseLong(userIdHeader);
-				String email = emailHeader;
+				String userName = userNameHeader;
 
 				// UserContext 에 저장 (ThreadLocal)
 				UserContext context = UserContext.builder()
 					.userId(userId)
-					.email(email)
+					.userName(userName)
 					.build();
 
 				UserContext.set(context);
 
-				log.debug("UserContext 설정 완료 - userId: {}, email: {}", userId, email);
+				log.debug("UserContext 설정 완료 - userId: {}, userName: {}", userId, userName);
 			}
 
 			// 다음 필터로
