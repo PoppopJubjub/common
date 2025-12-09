@@ -21,7 +21,7 @@ public abstract class BaseEntity {
 
     @CreatedBy
     @Column(name = "created_by", updatable = false)
-    private Long createdBy;
+    private String createdBy;
 
     @LastModifiedDate
     @Column(name = "updated_at")
@@ -29,13 +29,13 @@ public abstract class BaseEntity {
 
     @LastModifiedBy
     @Column(name = "updated_by")
-    private Long updatedBy;
+    private String updatedBy;
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
     @Column(name = "deleted_by")
-    private Long deletedBy;
+    private String deletedBy;
 
     @PrePersist
     protected void onCreate() {
@@ -47,7 +47,7 @@ public abstract class BaseEntity {
         updatedAt = LocalDateTime.now();
     }
 
-    public void softDelete(Long deletedBy) {
+    public void softDelete(String deletedBy) {
         this.deletedAt = LocalDateTime.now();
         this.deletedBy = deletedBy;
     }

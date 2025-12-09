@@ -14,8 +14,7 @@ public enum ErrorCode implements BaseErrorCode {
 	INTERNAL_SERVER_ERROR("서버 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
 
 	// UserContext 관련
-	USER_CONTEXT_NOT_FOUND("사용자 인증 정보를 찾을 수 없습니다.", HttpStatus.UNAUTHORIZED),
-	ROLE_FORBIDDEN("해당되는 권한이 없습니다.", HttpStatus.FORBIDDEN);
+	USER_CONTEXT_NOT_FOUND("사용자 인증 정보를 찾을 수 없습니다.", HttpStatus.UNAUTHORIZED);
 
 	private final String message;
 	private final HttpStatus status;

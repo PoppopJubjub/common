@@ -16,7 +16,6 @@ public class UserContext {
 
 	private Long userId;
 	private String userName;
-	private List<String> roles;
 
 	private static final ThreadLocal<UserContext> CONTEXT_HOLDER = new ThreadLocal<>();
 
@@ -34,14 +33,6 @@ public class UserContext {
 			throw new CommonException(ErrorCode.USER_CONTEXT_NOT_FOUND);
 		}
 		return context.getUserId();
-	}
-
-	public static List<String> getCurrentRoles() {
-		UserContext context = get();
-		if (context == null) {
-			throw new CommonException(ErrorCode.USER_CONTEXT_NOT_FOUND);
-		}
-		return context.getRoles();
 	}
 
 	public static void clear() {
