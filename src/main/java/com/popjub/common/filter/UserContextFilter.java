@@ -24,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 public class UserContextFilter extends OncePerRequestFilter {
 
 	private static final String USER_ID_HEADER = "X-USER-ID";
-	private static final String USER_NAME_HEADER = "X-USER-NAME";
 	private static final String USER_ROLES_HEADER = "X-USER-ROLES";
 
 	@Override
@@ -36,26 +35,22 @@ public class UserContextFilter extends OncePerRequestFilter {
 
 		try {
 			String userIdHeader = request.getHeader(USER_ID_HEADER);
-			String userNameHeader = request.getHeader(USER_NAME_HEADER);
 			String userRolesHeader = request.getHeader(USER_ROLES_HEADER);
 
 			if (userIdHeader != null) {
 				Long userId = Long.parseLong(userIdHeader);
-				String userName = userNameHeader;
 				List<String> roles = parseRoles(userRolesHeader);
 
 				// UserContext 에 저장 (ThreadLocal)
 				UserContext context = UserContext.builder()
 					.userId(userId)
-					.userName(userName)
 					.roles(roles)
 					.build();
 
 				UserContext.set(context);
 
-				log.debug("UserContext 설정 완료 - userId: {}, userName: {}, roles: {}",
+				log.debug("UserContext 설정 완료 - userId: {}, roles: {}",
 					userId,
-					userName,
 					roles
 				);
 			}
