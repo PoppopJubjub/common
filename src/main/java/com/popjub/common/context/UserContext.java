@@ -15,7 +15,6 @@ import lombok.ToString;
 public class UserContext {
 
 	private Long userId;
-	private String userName;
 	private List<String> roles;
 
 	private static final ThreadLocal<UserContext> CONTEXT_HOLDER = new ThreadLocal<>();
