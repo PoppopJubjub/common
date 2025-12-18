@@ -25,9 +25,6 @@ public class FeignClientInterceptor implements RequestInterceptor {
 				String roles = String.join(",", context.getRoles());
 				template.header(USER_ROLES_HEADER, roles);
 			}
-
-			log.debug("Feign 요청에 UserContext 헤더 추가 - userId: {}, roles: {}",
-				context.getUserId(), context.getRoles());
 		} else {
 			log.warn("Feign 요청 시 UserContext가 없습니다. 헤더가 추가되지 않습니다.");
 		}
