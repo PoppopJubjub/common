@@ -21,7 +21,7 @@ public abstract class BaseEntity {
 
     @CreatedBy
     @Column(name = "created_by", updatable = false)
-    private Long createdBy;
+    protected Long createdBy;
 
     @LastModifiedDate
     @Column(name = "updated_at")
